@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>COCINA DE APOLO</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+</head>
+
+
+<body>
+    <div id="titulo">
+        <tema face="Century Gothic">COCINA DE APOLO</tema>
+    </div>
+
+    <br><br>
+    <div class="botones">
+        <button class="button" onclick="location.href='/'" type="button">Inicio</button>
+        <button class="button" onclick="location.href='/recetas'" type="button">Recetas</button>
+        <button class="button" onclick="location.href='/ingredientes'" type="button">Ingredientes</button>
+    </div>
+
+
+
+    <div class="iconos">
+        {% if session["user"] %}
+        <button class="button2" onclick="location.href='/profile'" type="button">
+            <i class="fas fa-user-circle"></i></button>
+        <button class="button2" onclick="location.href='/logout'" type="button">
+            <i class="fas fa-sign-out-alt"></i></button>
+        {%else%}
+        <button class="button2" onclick="location.href='/loginform'" type="button">
+            <i class="fas fa-sign-in-alt"></i></button>
+        {% endif%}
+        <button class="button2" onclick="location.href='/carreta'" type="button"><i
+                class="fa fa-shopping-basket"></i></button>
+
+    </div>
+
+
+    <br><br><br>
+    <div id="pagina">
+        <header>Perfil</header>
+    </div>
+
+    <br><br><br>
+    <div id="subtexto_2">
+        <texto1>Mi cuenta</texto1> <i class="fas fa-user-circle"></i>
+        <p>
+            <hr width=85% align="left">
+        <p>
+    </div>
+
+    <br><br>
+    <div id="datos_compra">
+        <nombre>Nombre completo</nombre>
+        <br>
+        <input type="text" name="nombre" class="datos">
+
+        <br><br>
+        <direccion>Dirección</direccion>
+        <br>
+        <input type="text" name="dirección" class="datos">
+
+        <br><br>
+        <tarjeta>Número de tarjeta</tarjeta>
+        <br>
+        <input type="text" name="numero de tarjeta" class="datos">
+
+        <br><br>
+        <div id="datos_compra" style="width: 16%; float:left">
+            <i class='far fa-calendar-alt'></i>
+            <fecha>Fecha de vencimiento</fecha>
+            <br>
+            <MM>MM </MM><select></select>
+            <YY>YY </YY><select></select>
+        </div>
+        <!--
+        <div id="datos_compra" style="width: 28%; float:left">
+            <cvv>CVV</cvv>
+            <br>
+            <input type="text" name="CVV" class="dato_seguridad">
+        </div>
+ -->
+    </div>
+
+</body>
+
+<style>
+    body {
+        margin-right: 110px;
+        margin-left: 110px;
+    }
+</style>
+
+</html>

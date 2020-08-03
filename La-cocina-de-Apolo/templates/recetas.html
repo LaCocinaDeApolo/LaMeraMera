@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>COCINA DE APOLO</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+</head>
+
+
+<body>
+    <div id="titulo">
+        <tema face="Century Gothic">COCINA DE APOLO</tema>
+    </div>
+
+    <br><br>
+    <div class="botones">
+        <button class="button" onclick="location.href='/'" type="button">Inicio</button>
+        <button class="button" onclick="location.href='/recetas'" type="button">Recetas</button>
+        <button class="button" onclick="location.href='/ingredientes'" type="button">Ingredientes</button>
+    </div>
+
+
+
+    <div class="iconos">
+        {% if session["user"] %}
+        <button class="button2" onclick="location.href='/profile'" type="button">
+            <i class="fas fa-user-circle"></i></button>
+        <button class="button2" onclick="location.href='/logout'" type="button">
+            <i class="fas fa-sign-out-alt"></i></button>
+        {%else%}
+        <button class="button2" onclick="location.href='/loginform'" type="button">
+            <i class="fas fa-sign-in-alt"></i></button>
+        {% endif%}
+        <button class="button2" onclick="location.href='/carreta'" type="button"><i
+                class="fa fa-shopping-basket"></i></button>
+
+    </div>
+    <br><br><br>
+    <div id="pagina">
+        <header>Recetas</header>
+        <br><br><br><br>
+
+        {% if session["role"] == "Miembro"%}
+        <texto1>Ingrese su nueva receta</texto1>
+        <form action="/recetas" method="POST">
+
+
+            <input type="text" name="receta" placeholder="Nombre de la receta" id="receta" required>
+            <input type="text" name="descripcion" placeholder="Descripcion" id="descripcion" required>
+            <input type="text" name="tipo" placeholder="Tipo" id="tipo" required>
+            <input type="text" name="video" placeholder="Link de video" id="video" required>
+            <input type="submit" value="Ingresar">
+        </form>
+
+        {% endif%}
+        <form action="/recetas">
+            <section class="recetas">
+                <h2>ELIGE TU PREFERIDO:</h2>
+                <br><br>
+                <div class="container">
+                    {% for Recetas in dataRecetas %}
+                    <div class="column column--50-25">
+
+                        <h2 class="recetas_title">{{Recetas[1]}}</h2>
+                        <p class="recetas_descripcion">{{Recetas[2]}}</p>
+                        <h5 class="recetas_tipo">{{Recetas[3]}}</h5>
+                        <a href={{Recetas[4]}}>Video de {{Recetas[1]}}</a>
+                        <hr>
+                    </div>
+                    {% endfor %}
+
+
+        </form>
+        <br><br><br><br>
+
+    </div>
+</body>
+
+<style>
+    body {
+        margin-right: 110px;
+        margin-left: 110px;
+    }
+</style>
+
+</html>
